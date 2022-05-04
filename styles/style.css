@@ -53,6 +53,9 @@ header {
     box-shadow: var(--shadow);
 }
 
+button {
+    max-height: 20px;
+}
 footer {
     display: flex;
     justify-content: flex-end;

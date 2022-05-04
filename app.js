@@ -1,44 +1,46 @@
 // import functions and grab DOM elements
-const shedClick = document.getElementById('shed-button');
-const boulderButton = document.getElementById('boulder');
+const shedButton = document.getElementById('shed-button');
+const boulderButton = document.getElementById('boulder-button');
+const treeButton = document.getElementById('tree-button');
 
-const shedContainer = document.getElementById('Shed-Container');
+const shedContainer = document.getElementById('shed-container');
 const treeContainer = document.getElementById('tree-container');
-const boulderContainer = document.getElementById('bouldercontainer');
+const boulderContainer = document.getElementById('boulder-container');
 
 const totalEl = document.getElementById('total');
 const winsEl = document.getElementById('wins');
 
 // initialize state
 const hidingPlaces = [
-    'tree'
-    'shed'
+    'tree',
+    'shed',
     'boulder'
 ];
-
 let correctGuesses = 0;
 let totalGuesses = 0;
 
 function getRandomItem(arr) {
-    const index = Math.random();
-
+    
+    const index = Math.floor(Math.random() * 3);
     return arr[index];
 }
 
 function handleGuess(userGuess, correctSpot) {
-    resetStyles();
-    totalGuesses++;
 
+
+
+    setStyles();
+    totalGuesses++;
     const correctHidingPlaceEl = document.getElementById(`${correctSpot}-container`);
 
     correctHidingPlaceEl.classList.add('face');
 
     if (userGuess === correctSpot) {
-        correctGuesses--;
-    }
+        correctGuesses++;
+    } 
 
-    totalGuesses = totalEl.textContent;
-    correctGuesses = winsEl.textContent;
+    totalEl.textContent = totalGuesses.value;
+    winsEl.textcontent = correctGuesses.value;
 
 }
 
@@ -54,13 +56,13 @@ shedButton.addEventListener('click', () => {
     handleGuess(correctSpot, 'shed');  
 });
 
-treeButton.addEventListener('submit', () => {
+treeButton.addEventListener('click', () => {
     const correctSpot = getRandomItem(hidingPlaces);
 
     handleGuess(correctSpot, 'tree');  
 });
 
-boulderButton.addEventListener(() => {
+boulderButton.addEventListener('click', () => {
     const correctSpot = getRandomItem(hidingPlaces);
 
     handleGuess(correctSpot, 'boulder');  
